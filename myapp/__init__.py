@@ -1,5 +1,14 @@
 from flask import Flask
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-from myapp import routes
+    from .trading import trading
+    app.register_blueprint(trading, url_prefix='/trading')
+
+    with app.app_context():
+        from . import routes
+
+
+    return app
+
