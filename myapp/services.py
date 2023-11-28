@@ -3,8 +3,6 @@ from binance.client import Client
 from .utils import *
 
 
-
-
 def fetch_income_history(api_key, secret_key):
     client = Client(api_key, secret_key)
     income_history = client.futures_income_history(limit=1000)
@@ -89,3 +87,10 @@ def fetch_open_positions(api_key,secret_key):
         open_position_df = pd.DataFrame(open_position,columns = columns)
         
     return open_position_df
+
+
+
+
+
+
+
