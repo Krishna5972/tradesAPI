@@ -50,13 +50,21 @@ def fetch_mock_account_history(api_key, secret_key):
                 "price": f"{random.uniform(0.1, 300.0):.5f}",
                 "qty": random.randint(1, 10000),
                 "quoteQty": f"{random.uniform(10.0, 1000.0):.7f}",
-                "realizedPnl": f"{random.uniform(-10.0, 10.0):.8f}",
+                "realizedPnl": f"{random.uniform(-100.0, 100.0):.8f}",
                 "side": random.choice(["BUY", "SELL"]),
                 "symbol": random.choice(available_coins) + "USDT",
                 "time": day_timestamp,
                 "utc_time": day_date.strftime("%a, %d %b %Y %H:%M:%S GMT")
             }
             mock_data.append(record)
+
+    account_history = pd.DataFrame(mock_data)
+    account_history['utc_time'] = account_history['time'].apply(convert_timestamp_to_utc)
+    account_history['day'] = account_history['utc_time'].dt.day
+
+    
+    return account_history
+
 
 def fetch_mock_open_positions(api_key,secret_key):
     client = Client(api_key, secret_key)
