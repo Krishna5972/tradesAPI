@@ -52,6 +52,8 @@ def get_position_from_account(account_history):
     PNL['utc_time'] = PNL['utc_time'].shift(1)
     PNL = PNL[PNL['realizedPnl']!=0]
 
+    PNL.fillna(pd.Timestamp('2023-01-01'), inplace=True)
+
     return PNL
 
 
