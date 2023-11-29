@@ -10,6 +10,7 @@ contourpy>=1.0.0
 cycler==0.12.1
 dateparser==1.2.0
 Flask==3.0.0
+Flask-Cors>=3.0.0
 fonttools==4.45.1
 frozenlist==1.4.0
 idna==3.6
